@@ -1,12 +1,13 @@
 import { sql } from '../Config/DBconfig.js'
 
-export const AddTransaction = (req, res) => {
+export const AddTransaction = async (req, res) => {
   const { category, amount, title, userid } = req.body
   try {
     if (!title || !amount || !category || !userid) {
       res.status(400).json('Enter All Fields')
     }
-    const transaction = sql`INSERT INTO transcations(userid,title,amount,category)
+    const transaction =
+      await sql`INSERT INTO transcations(userid,title,amount,category)
     VALUES (${userid},${title},${amount},${category})
     RETURNING *
     `
