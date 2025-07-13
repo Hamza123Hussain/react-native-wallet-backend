@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { AddTransaction } from '../Controllers/AddTransaction.js'
+import { GetUserTransaction } from '../Controllers/GetUserTransactions.js'
 
-export const ExpenseRouter = Router()
-ExpenseRouter.post('/AddTransaction', AddTransaction)
+export const TransactionsRouter = Router()
+TransactionsRouter.post('/AddTransaction', AddTransaction)
+TransactionsRouter.get('/GetUserTransactions/:userid', GetUserTransaction)

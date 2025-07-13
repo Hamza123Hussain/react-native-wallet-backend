@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { sql } from './Config/DBconfig.js'
-import { ExpenseRouter } from './routes/ExpenseRouter.js'
+import { TransactionsRouter } from './routes/ExpenseRouter.js'
+
 dotenv.config()
 const App = express()
 
@@ -23,7 +24,7 @@ async function InitiDB() {
     process.exit(1)
   }
 }
-App.use('/api/transactions', ExpenseRouter)
+App.use('/api/transactions', TransactionsRouter)
 
 InitiDB().then(() => {
   App.listen(PORT, () => {
