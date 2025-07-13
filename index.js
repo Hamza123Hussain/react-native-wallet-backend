@@ -1,11 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { sql } from './Config/DBconfig.js'
+import { ExpenseRouter } from './routes/ExpenseRouter.js'
 dotenv.config()
 const App = express()
 
 const PORT = process.env.PORT || 6000
-
+App.use(express.json())
 async function InitiDB() {
   try {
     await sql`CREATE TABLE IF NOT EXISTS transcations (
@@ -22,6 +23,8 @@ async function InitiDB() {
     process.exit(1)
   }
 }
+App.use('/api/transactions', ExpenseRouter)
+
 InitiDB().then(() => {
   App.listen(PORT, () => {
     console.log('APP HAS BEEN TURNED ON')
