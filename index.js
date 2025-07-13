@@ -27,6 +27,6 @@ App.use('/api/transactions', ExpenseRouter)
 
 InitiDB().then(() => {
   App.listen(PORT, () => {
-    console.log('APP HAS BEEN TURNED ON')
+    console.log('APP HAS BEEN TURNED ON', PORT)
   })
 })
