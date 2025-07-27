@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import { sql } from './Config/DBconfig.js'
 import { TransactionsRouter } from './routes/ExpenseRouter.js'
 import { MainRatelimiter } from './Config/Ratelimiter.js'
+import { DB_CONNECTED } from './Connection.js'
+import { UserRouter } from './routes/UserRouter.js'
 
 dotenv.config()
 const App = express()
@@ -29,7 +31,10 @@ async function InitiDB() {
 App.use('/api/transactions', TransactionsRouter)
 
 InitiDB().then(() => {
-  App.listen(PORT, () => {
-    console.log('APP HAS BEEN TURNED ON', PORT)
+  DB_CONNECTED().then(() => {
+    App.listen(PORT, () => {
+      console.log('APP HAS BEEN TURNED ON', PORT)
+    })
   })
 })
+App.use('/api/user', UserRouter)
