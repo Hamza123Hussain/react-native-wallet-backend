@@ -11,7 +11,7 @@ const App = express()
 
 const PORT = process.env.PORT || 6000
 App.use(express.json())
-App.use(MainRatelimiter)
+// App.use(MainRatelimiter)
 async function InitiDB() {
   try {
     await sql`CREATE TABLE IF NOT EXISTS transcations (
