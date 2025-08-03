@@ -5,7 +5,7 @@ import { UserModel } from '../../UserModel.js'
 export const SignIn = async (req, res) => {
   try {
     // Extract email and password from request body
-    const { email, password } = req.body
+    const { email, password } = req.query
 
     // Find the user from the database using email
     const user = await UserModel.findOne({ email })
